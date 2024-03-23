@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import '../src.dart';
 
 extension AppOverlayExtension on BuildContext {
-  void show({
+  Future<void> show({
     String message = '',
     AppOverlayType type = AppOverlayType.loading,
     Widget footer = const SizedBox.shrink(),
     Color? backgroundColor,
     Widget customWidget = const SizedBox.shrink(),
-  }) {
+  }) async {
     AppOverlay.show(
-      this,
       message: message,
       type: type,
       footer: footer,
@@ -20,7 +19,7 @@ extension AppOverlayExtension on BuildContext {
     );
   }
 
-  void hide({int delayInSecond = 2}) {
+  Future<void> hide({int delayInSecond = 2}) async {
     AppOverlay.hide(delayInSecond: delayInSecond);
   }
 }

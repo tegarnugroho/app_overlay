@@ -18,6 +18,7 @@ class AppOverlay {
   );
   static bool _initialized = false;
   static Color _backgroundColor = Colors.white;
+  static late BuildContext _overlayContext;
 
   static Widget init({
     required Widget child,
@@ -33,24 +34,26 @@ class AppOverlay {
     _successWidget = successWidget ?? _successWidget;
     _initialized = true;
 
-    return child;
+    return Builder(builder: (context) {
+      _overlayContext = context;
+      return child;
+    });
   }
 
   static void _checkInitialized() {
     if (!_initialized) {
       throw Exception(
-          'OverlayAnimation must be initialized before calling show() or hide().');
+          'AppOverlay must be initialized before calling show() or hide().');
     }
   }
 
-  static void show(
-    BuildContext context, {
+  static Future<void> show({
     String message = '',
     AppOverlayType type = AppOverlayType.loading,
     Widget footer = const SizedBox.shrink(),
     Color? backgroundColor,
     Widget customWidget = const SizedBox.shrink(),
-  }) {
+  }) async {
     _checkInitialized();
 
     for (var overlayEntry in _overlayStack) {
@@ -80,16 +83,16 @@ class AppOverlay {
         ],
       ),
     );
-    Overlay.of(context).insert(overlayEntry);
+    Overlay.of(_overlayContext).insert(overlayEntry); // Use overlayContext
     _overlayStack.add(overlayEntry);
   }
 
-  static void hide({int delayInSecond = 2}) {
+  static Future<void> hide({int delayInSecond = 2}) async {
     _checkInitialized();
 
     if (_overlayStack.isNotEmpty) {
       final overlayEntry = _overlayStack.removeLast();
-      Future.delayed(Duration(seconds: delayInSecond), () {
+      await Future.delayed(Duration(seconds: delayInSecond), () {
         overlayEntry.remove();
       });
     }

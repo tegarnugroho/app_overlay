@@ -60,9 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          context.show();
-          context.hide(delayInSecond: 2);
-          context.show(type: AppOverlayType.success);
+          AppOverlay.show(
+            message: 'Loading',
+            type: AppOverlayType.loading,
+          );
+          AppOverlay.hide(delayInSecond: 2);
         },
         tooltip: 'Show',
         child: const Icon(Icons.shower),
