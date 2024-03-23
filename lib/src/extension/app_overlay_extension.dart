@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../src.dart';
 
-extension OverlayAnimationExtension on BuildContext {
+extension AppOverlayExtension on BuildContext {
   void show({
     String message = '',
-    OverlayAnimationType type = OverlayAnimationType.loading,
+    AppOverlayType type = AppOverlayType.loading,
     Widget footer = const SizedBox.shrink(),
     Color? backgroundColor,
     Widget customWidget = const SizedBox.shrink(),

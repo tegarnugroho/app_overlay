@@ -46,7 +46,7 @@ class AppOverlay {
   static void show(
     BuildContext context, {
     String message = '',
-    OverlayAnimationType type = OverlayAnimationType.loading,
+    AppOverlayType type = AppOverlayType.loading,
     Widget footer = const SizedBox.shrink(),
     Color? backgroundColor,
     Widget customWidget = const SizedBox.shrink(),
@@ -58,7 +58,7 @@ class AppOverlay {
     }
     _overlayStack.clear();
 
-    final animationParams = OverlayAnimationParams(
+    final overlayParams = AppOverlayParams(
       message: _getMessageFromType(type),
       type: type,
       backgroundColor: backgroundColor ?? _backgroundColor,
@@ -71,7 +71,7 @@ class AppOverlay {
         children: [
           Positioned.fill(
             child: AppOverlayWidget(
-              params: animationParams,
+              params: overlayParams,
               loadingDecoration: _defaultLoadingDecoration,
               successWidget: _successWidget,
               errorWidget: _errorWidget,
@@ -95,11 +95,11 @@ class AppOverlay {
     }
   }
 
-  static String _getMessageFromType(OverlayAnimationType type) {
+  static String _getMessageFromType(AppOverlayType type) {
     return switch (type) {
-      OverlayAnimationType.loading => 'Loading...',
-      OverlayAnimationType.error => 'Error',
-      OverlayAnimationType.success => 'Success',
+      AppOverlayType.loading => 'Loading...',
+      AppOverlayType.error => 'Error',
+      AppOverlayType.success => 'Success',
       _ => '',
     };
   }

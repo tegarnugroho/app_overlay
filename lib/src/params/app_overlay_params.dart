@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 
-enum OverlayAnimationType { none, loading, success, error, custom }
+enum AppOverlayType { none, loading, success, error, custom }
 
-class OverlayAnimationParams {
+class AppOverlayParams {
   final String message;
   final Widget footer;
-  final OverlayAnimationType type;
+  final AppOverlayType type;
   final Color backgroundColor;
   final Widget customWidget;
 
-  const OverlayAnimationParams({
+  const AppOverlayParams({
     this.message = '',
-    this.type = OverlayAnimationType.loading,
+    this.type = AppOverlayType.loading,
     this.backgroundColor = Colors.white,
     this.footer = const SizedBox.shrink(),
     this.customWidget = const SizedBox.shrink(),
   });
 
-  OverlayAnimationParams copyWith({
+  AppOverlayParams copyWith({
     String? message,
     Widget? footer,
-    OverlayAnimationType? type,
+    AppOverlayType? type,
     Color? backgroundColor,
     double? copyWidth,
     Widget? customWidget,
   }) {
-    return OverlayAnimationParams(
+    return AppOverlayParams(
       message: message ?? this.message,
       type: type ?? this.type,
       footer: footer ?? this.footer,

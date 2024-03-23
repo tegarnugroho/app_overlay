@@ -4,7 +4,7 @@ import '../params/params.dart';
 import 'circular_progress.dart';
 
 class AppOverlayWidget extends StatelessWidget {
-  final OverlayAnimationParams params;
+  final AppOverlayParams params;
   final LoadingDecoration loadingDecoration;
   final Widget successWidget;
   final Widget errorWidget;
@@ -18,9 +18,9 @@ class AppOverlayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (params.type == OverlayAnimationType.none) {
+    if (params.type == AppOverlayType.none) {
       return const SizedBox.shrink();
-    } else if (params.type == OverlayAnimationType.custom) {
+    } else if (params.type == AppOverlayType.custom) {
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.2),
         body: params.customWidget,
@@ -53,10 +53,10 @@ class AppOverlayWidget extends StatelessWidget {
       ),
       child: Builder(
         builder: (context) => switch (params.type) {
-          OverlayAnimationType.loading =>
+          AppOverlayType.loading =>
             CircularProgress(loadingDecoration: loadingDecoration),
-          OverlayAnimationType.error => errorWidget,
-          OverlayAnimationType.success => successWidget,
+          AppOverlayType.error => errorWidget,
+          AppOverlayType.success => successWidget,
           _ => const SizedBox.shrink(),
         },
       ),

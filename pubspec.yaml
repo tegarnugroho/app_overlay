@@ -1,5 +1,5 @@
 name: app_overlay
-description: "A package that provides a simple way to create overlay animations in Flutter."
+description: "A package that provides a simple way to create app overlay in Flutter."
 version: 0.0.1
 homepage: https://github.com/tegarnugroho
 repository: https://github.com/tegarnugroho
