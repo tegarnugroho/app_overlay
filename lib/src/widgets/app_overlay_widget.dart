@@ -29,22 +29,28 @@ class AppOverlayWidget extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.2),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(width: double.infinity),
-          _animationBuilder(),
-          _labelBuilder(),
-          params.footer,
-        ],
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              _animationBuilder(),
+              if (params.message.isNotEmpty) _labelBuilder(),
+              params.footer,
+            ],
+          ),
+        ),
       ),
     );
   }
 
   Widget _animationBuilder() {
     return Container(
-      width: 230,
-      height: 230,
+      width: loadingDecoration.size + 35,
+      height: loadingDecoration.size + 35,
       margin: const EdgeInsets.only(bottom: 20),
       alignment: Alignment.center,
       decoration: BoxDecoration(

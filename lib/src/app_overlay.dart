@@ -62,7 +62,7 @@ class AppOverlay {
     _overlayStack.clear();
 
     final overlayParams = AppOverlayParams(
-      message: _getMessageFromType(type),
+      message: message,
       type: type,
       backgroundColor: backgroundColor ?? _backgroundColor,
       footer: footer,
@@ -87,7 +87,7 @@ class AppOverlay {
     _overlayStack.add(overlayEntry);
   }
 
-  static Future<void> hide({int delayInSecond = 2}) async {
+  static Future<void> hide({int delayInSecond = 0}) async {
     _checkInitialized();
 
     if (_overlayStack.isNotEmpty) {
@@ -96,14 +96,5 @@ class AppOverlay {
         overlayEntry.remove();
       });
     }
-  }
-
-  static String _getMessageFromType(AppOverlayType type) {
-    return switch (type) {
-      AppOverlayType.loading => 'Loading...',
-      AppOverlayType.error => 'Error',
-      AppOverlayType.success => 'Success',
-      _ => '',
-    };
   }
 }
