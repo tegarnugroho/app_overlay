@@ -52,25 +52,10 @@ AppOverlay.show(
 );
 ```
 
-Show App Overlay with a customizable message using `BuildContext` extension:
-
-```dart
-context.show(
-  message: 'Loading data...',
-  type: OverlayType.loading,
-);
-```
-
 Hide App Overlay after a delay:
 
 ```dart
 AppOverlay.hide(delayInSecond: 2);
-```
-
-Hide App Overlay after a delay using `BuildContext` extension:
-
-```dart
-context.hide(delayInSecond: 2);
 ```
 
 ## Customization
